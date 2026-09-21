@@ -256,6 +256,8 @@
       openDropdown: null,
       statusMenuFor: null,
       form: { name: '', patient: '', material: 'زركون', status: 'late', total: '', paid: '', orderDate: '', dueDate: '' },
+      editingCaseId: null,
+      editingCaseStatus: null,
       materialsModalOpen: false,
       materialEditingId: null,
       materialsMenuFor: null,
@@ -544,11 +546,35 @@
     this.setState({
       modalOpen: true,
       openDropdown: null,
+      editingCaseId: null,
+      editingCaseStatus: null,
       form: { name: '', patient: '', material: 'زركون', status: 'late', total: '', paid: '', orderDate: today, dueDate: '' }
     });
   };
 
-  App.prototype.closeModal = function () { this.setState({ modalOpen: false, openDropdown: null }); };
+  App.prototype.openEditModal = function (rowId, statusId) {
+    var row = this.findCaseRow(statusId, rowId);
+    if (!row) return;
+    this.setState({
+      modalOpen: true,
+      openDropdown: null,
+      statusMenuFor: null,
+      editingCaseId: rowId,
+      editingCaseStatus: statusId,
+      form: {
+        name: (row.doctor && row.doctor !== '—') ? row.doctor : '',
+        patient: (row.patient && row.patient !== '—') ? row.patient : '',
+        material: row.material || row.caseType || 'زركون',
+        status: statusId,
+        total: (row.total !== undefined && row.total !== null) ? String(row.total) : '',
+        paid: (row.paid !== undefined && row.paid !== null) ? String(row.paid) : '',
+        orderDate: row.orderDate || '',
+        dueDate: row.dueDate || ''
+      }
+    });
+  };
+
+  App.prototype.closeModal = function () { this.setState({ modalOpen: false, openDropdown: null, editingCaseId: null, editingCaseStatus: null }); };
 
   App.prototype.setFormField = function (key, value) {
     var form = Object.assign({}, this.state.form);
@@ -566,6 +592,57 @@
     var today = new Date().toISOString().slice(0, 10);
     var paidNum = Number(f.paid) || 0;
     var totalNum = Number(f.total) || 0;
+
+    if (this.state.editingCaseId) {
+      var sources = {
+        late: this.lateRows, inprogress: this.progressRows, completed: this.completedRows,
+        delivered: this.deliveredRows, pending: this.pendingRows
+      };
+      var oldStatus = this.state.editingCaseStatus;
+      var oldId = this.state.editingCaseId;
+      var oldArr = sources[oldStatus];
+      var idx = oldArr ? oldArr.findIndex(function (r) { return r.id === oldId; }) : -1;
+      var existing = idx !== -1 ? oldArr[idx] : {};
+      if (idx !== -1) oldArr.splice(idx, 1);
+
+      var updated = Object.assign({}, existing, {
+        id: oldId,
+        doctor: f.name.trim() || '—',
+        clinic: existing.clinic || '—',
+        patient: f.patient.trim() || '—',
+        material: f.material,
+        caseType: f.material,
+        paid: paidNum,
+        total: totalNum,
+        orderDate: f.orderDate || today,
+        dueDate: f.dueDate || ''
+      });
+
+      var newStatus = f.status;
+      if (newStatus === 'late') {
+        updated.expected = updated.expected || today;
+        updated.late = updated.late || '—';
+      } else if (newStatus === 'inprogress') {
+        updated.stage = updated.stage || 'قيد المعالجة';
+        updated.progress = updated.progress != null ? updated.progress : 10;
+        updated.progressText = updated.progressText || (updated.progress + '%');
+        updated.expected = updated.expected || today;
+      } else if (newStatus === 'completed') {
+        updated.completedDate = updated.completedDate || today;
+      } else if (newStatus === 'delivered') {
+        updated.deliveredDate = updated.deliveredDate || today;
+      } else if (newStatus === 'pending') {
+        updated.readyDate = updated.readyDate || today;
+        updated.notes = updated.notes || '—';
+      }
+
+      sources[newStatus].unshift(updated);
+      this.saveData();
+      this.setState({ modalOpen: false, editingCaseId: null, editingCaseStatus: null, selected: newStatus, search: '' });
+      this.checkAlerts();
+      return;
+    }
+
     this.idCounter += 1;
     var base = {
       id: 'case-' + this.idCounter,
@@ -854,6 +931,7 @@
 
       case 'toggle-status-menu': this.toggleStatusMenu(rowId); break;
       case 'close-status-menu': this.closeStatusMenu(); break;
+      case 'edit-case': this.openEditModal(rowId, sel); break;
       case 'move-case': this.moveCase(rowId, sel, value); break;
       case 'mark-paid': {
         var rowP = this.findCaseRow(sel, rowId);
@@ -1059,6 +1137,9 @@
       hasSelection: !!sel, noSelection: !sel,
 
       modalOpen: !!this.state.modalOpen,
+      isEditingCase: !!this.state.editingCaseId,
+      caseModalTitle: this.state.editingCaseId ? 'تعديل بيانات الحالة' : 'إضافة حالة جديدة',
+      caseSaveLabel: this.state.editingCaseId ? 'حفظ التعديلات' : 'حفظ',
       formName: this.state.form.name,
       formPatient: this.state.form.patient,
       formMaterial: this.state.form.material,
@@ -1095,7 +1176,6 @@
 
       isProfits: sel === 'profits', isDebts: sel === 'debts', isMaterials: sel === 'materials',
       isCaseCategory: isCaseCategory,
-
       activeRowsFiltered: activeRowsFiltered,
       activeEmptyNoData: activeEmptyNoData,
       activeEmptyWithSearch: activeEmptyWithSearch,
@@ -1332,7 +1412,7 @@
         + (row.isOverdue ? '<span style="display: inline-block; margin-inline-start: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(248,113,113,0.16); color: #f87171; font-size: 11px; font-weight: 700;">متأخر</span>' : '')
         + '</td>'
         + '<td style="padding: 14px 24px; position: relative;">'
-        + '<button type="button" data-action="toggle-status-menu" data-row="' + escHtml(row.id) + '" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">' + ICON_EDIT + '<span>تعديل الحالة</span></button>'
+        + '<button type="button" data-action="edit-case" data-row="' + escHtml(row.id) + '" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">' + ICON_EDIT + '<span>تعديل الحالة</span></button>'
         + menu
         + '</td></tr>';
     }).join('');
@@ -1446,7 +1526,7 @@
     return '<div style="position: fixed; inset: 0; background: rgba(2,4,10,0.72); backdrop-filter: blur(4px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px;">'
       + '<div class="eu-modal-box" style="width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto; border-radius: 20px; background: #0b1220; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding: 26px;">'
       + '<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">'
-      + '<span style="font-size: 17px; font-weight: 700; color: #f5f8fc;">إضافة حالة جديدة</span>'
+      + '<span style="font-size: 17px; font-weight: 700; color: #f5f8fc;">' + escHtml(v.caseModalTitle) + '</span>'
       + '<button data-action="close-modal" aria-label="إغلاق" class="eu-close" style="all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">' + ICON_CLOSE + '</button></div>'
 
       + '<div style="display: flex; flex-direction: column; gap: 16px;">'
@@ -1500,7 +1580,7 @@
 
       + '<div style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 24px;">'
       + '<button data-action="close-modal" style="all: unset; cursor: pointer; padding: 12px 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); color: #c3cde3; font-weight: 600; font-size: 14px;">إلغاء</button>'
-      + '<button data-action="save-case" style="all: unset; cursor: pointer; padding: 12px 26px; border-radius: 10px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">حفظ</button>'
+      + '<button data-action="save-case" style="all: unset; cursor: pointer; padding: 12px 26px; border-radius: 10px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">' + escHtml(v.caseSaveLabel) + '</button>'
       + '</div></div></div>';
   };
 
