@@ -2,34 +2,21 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<title>Esthetic Universe — لوحة تحكم مختبر الأسنان</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Esthetic Universe — الصفحة الرئيسية</title>
+<meta name="description" content="نظام إدارة مختبر تقنية الأسنان">
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#0b1220">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Esthetic Universe">
-<link rel="apple-touch-icon" href="./assets/7929ee891c99567d0c476a274dc09678.png">
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700;800;900&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="./assets/icon-192.png">
+<link rel="apple-touch-icon" href="./assets/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   body { margin: 0; }
   * { box-sizing: border-box; }
-  input::placeholder { color: #5c6b8a; }
-  input:focus { outline: none; border-color: #35c5c9 !important; box-shadow: 0 0 0 3px rgba(53,197,201,0.18); }
-  button:focus-visible { outline: 2px solid #35c5c9; outline-offset: 2px; }
-  .eu-card { transition: border-color .18s ease, background-color .18s ease, transform .15s ease; }
-  .eu-card:hover { transform: translateY(-2px); }
-  .eu-close:hover { background: rgba(255,255,255,0.08); }
-  .eu-option:hover { background: rgba(53,197,201,0.16) !important; }
-  table { border-collapse: collapse; }
-  th { text-align: right; }
 
   .eu-starfield {
     background-image:
@@ -63,7 +50,9 @@
       radial-gradient(3.2px 3.2px at 140px 90px, rgba(255,255,255,0.95), transparent 70%),
       radial-gradient(2.8px 2.8px at 380px 220px, rgba(150,235,235,0.85), transparent 70%),
       radial-gradient(3px 3px at 540px 70px, rgba(255,255,255,0.9), transparent 70%),
-      radial-gradient(2.6px 2.6px at 620px 300px, rgba(180,210,255,0.8), transparent 70%);
+      radial-gradient(2.6px 2.6px at 620px 300px, rgba(180,210,255,0.8), transparent 70%),
+      radial-gradient(3px 3px at 780px 420px, rgba(255,255,255,0.85), transparent 70%),
+      radial-gradient(2.6px 2.6px at 920px 160px, rgba(150,235,235,0.8), transparent 70%);
     background-repeat: repeat;
     background-size: 640px 640px;
     animation: eu-twinkle-b 3.4s ease-in-out infinite;
@@ -72,8 +61,9 @@
     position: absolute; border-radius: 50%; pointer-events: none; filter: blur(2px);
     animation: eu-nebula 9s ease-in-out infinite;
   }
-  .eu-nebula.n1 { width: 420px; height: 420px; top: -140px; right: 8%; background: radial-gradient(circle, rgba(53,197,201,0.20), rgba(53,197,201,0) 70%); }
-  .eu-nebula.n2 { width: 380px; height: 380px; top: 60px; left: 4%; background: radial-gradient(circle, rgba(120,110,220,0.16), rgba(120,110,220,0) 70%); animation-delay: 2.5s; }
+  .eu-nebula.n1 { width: 460px; height: 460px; top: -120px; right: 6%; background: radial-gradient(circle, rgba(53,197,201,0.20), rgba(53,197,201,0) 70%); }
+  .eu-nebula.n2 { width: 420px; height: 420px; bottom: -140px; left: 5%; background: radial-gradient(circle, rgba(120,110,220,0.18), rgba(120,110,220,0) 70%); animation-delay: 2.5s; }
+  .eu-nebula.n3 { width: 340px; height: 340px; top: 40%; left: 46%; background: radial-gradient(circle, rgba(53,197,201,0.12), rgba(53,197,201,0) 70%); animation-delay: 4.2s; }
   @keyframes eu-twinkle-a { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
   @keyframes eu-twinkle-b { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.9; } }
   @keyframes eu-drift { 0% { background-position: 0 0; } 100% { background-position: -220px 220px; } }
@@ -92,1420 +82,162 @@
     22%  { opacity: 0; }
     100% { transform: translate(-260px,180px) rotate(-35deg); opacity: 0; }
   }
-  .eu-shoot.s1 { top: 10%; right: 62%; animation-delay: .3s; }
-  .eu-shoot.s2 { top: 2%;  right: 22%; animation-delay: 3.1s; }
-  .eu-shoot.s3 { top: 22%; right: 80%; animation-delay: 5.6s; animation-duration: 8s; }
-  .eu-shoot.s4 { top: -2%; right: 42%; animation-delay: 1.9s; animation-duration: 9s; }
-  .eu-shoot.s5 { top: 16%; right: 12%; animation-delay: 4.4s; animation-duration: 6.4s; width: 110px; }
-  .eu-shoot.s6 { top: 30%; right: 55%; animation-delay: 7.2s; animation-duration: 10s; width: 120px; }
+  .eu-shoot.s1 { top: 12%; right: 68%; animation-delay: .3s; }
+  .eu-shoot.s2 { top: 4%;  right: 26%; animation-delay: 3.1s; }
+  .eu-shoot.s3 { top: 26%; right: 84%; animation-delay: 5.6s; animation-duration: 8s; }
+  .eu-shoot.s4 { top: 62%; right: 20%; animation-delay: 1.9s; animation-duration: 9s; }
+  .eu-shoot.s5 { top: 70%; right: 74%; animation-delay: 4.4s; animation-duration: 6.4s; width: 110px; }
+  .eu-shoot.s6 { top: 40%; right: 46%; animation-delay: 7.2s; animation-duration: 10s; width: 120px; }
+
   .eu-logo-float { animation: eu-float 7s ease-in-out infinite; }
-  @keyframes eu-float { 0%, 100% { transform: translate(-50%,-50%) scale(1); } 50% { transform: translate(-50%,-52%) scale(1.015); } }
+  @keyframes eu-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  .eu-enter-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 17px 42px; border-radius: 999px;
+    background: linear-gradient(135deg, #35c5c9, #2196a3);
+    color: #04141a; font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 16px;
+    text-decoration: none; letter-spacing: .2px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.14), 0 12px 34px rgba(53,197,201,0.35);
+    transition: transform .18s ease, box-shadow .18s ease;
+    border: none; cursor: pointer;
+  }
+  .eu-enter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 16px 40px rgba(53,197,201,0.5);
+  }
+  .eu-enter-btn svg { transition: transform .18s ease; }
+  .eu-enter-btn:hover svg { transform: translateX(-3px); }
+
+  .eu-hidden { display: none !important; }
 </style>
-</helmet>
+</head>
+<body>
 
-<div style="width: 100%; min-height: 100vh; position: relative; direction: rtl; font-family: 'Tajawal', sans-serif; background-color: #050810; color: #e7ecf5;" class="eu-starfield">
+<div class="eu-starfield" style="width: 100%; min-height: 100vh; box-sizing: border-box; position: relative; overflow: hidden; direction: rtl; font-family: 'Tajawal', sans-serif; background-color: #050810; color: #e7ecf5; display: flex; align-items: center; justify-content: center; padding: 40px 24px;">
 
-  <div style="position: fixed; top: 20px; inset-inline-end: 20px; z-index: 300; display: flex; flex-direction: column; gap: 10px; max-width: 340px; width: calc(100% - 40px);">
-    <sc-for list="{{ alertsList }}" as="alert" hint-placeholder-count="0">
-      <div style="display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; border-radius: 12px; background: #101826; border: 1px solid {{ alert.borderColor }}; box-shadow: 0 12px 32px rgba(0,0,0,0.45);">
-        <span style="width: 9px; height: 9px; border-radius: 50%; background: {{ alert.dotColor }}; margin-top: 5px; flex-shrink: 0;"></span>
-        <span style="flex: 1; color: #eef1f8; font-size: 13.5px; line-height: 1.5;">{{ alert.text }}</span>
-        <button type="button" onClick="{{ alert.dismiss }}" style="all: unset; cursor: pointer; color: #6b7690; flex-shrink: 0;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-    </sc-for>
+  <div id="installBanner" class="eu-hidden" style="position: fixed; bottom: 16px; inset-inline: 16px; z-index: 250; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: #101826; border: 1px solid rgba(53,197,201,0.35); box-shadow: 0 16px 40px rgba(0,0,0,0.45);">
+    <span style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #0b1220;">
+      <img src="./assets/icon.png" alt="" style="width: 30px; height: 30px; object-fit: contain;" onerror="this.style.display='none';">
+    </span>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-size: 13.5px; font-weight: 700; color: #f5f8fc;">ثبّت التطبيق على جهازك</div>
+      <div style="font-size: 12px; color: #93a0bb;">وصول أسرع من الشاشة الرئيسية بدون فتح المتصفح</div>
+    </div>
+    <button type="button" id="installBtn" class="eu-enter-btn" style="padding: 9px 16px; font-size: 13px;">تثبيت</button>
+    <button type="button" id="dismissInstallBtn" aria-label="إغلاق" style="all: unset; cursor: pointer; color: #6b7690; flex-shrink: 0;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
   </div>
 
-  <sc-if value="{{ showInstallBanner }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; bottom: 16px; inset-inline: 16px; z-index: 250; display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: #101826; border: 1px solid rgba(53,197,201,0.35); box-shadow: 0 16px 40px rgba(0,0,0,0.45);">
-      <span style="width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #0b1220;">
-        <img src="./assets/7929ee891c99567d0c476a274dc09678.png" alt="" style="width: 30px; height: 30px; object-fit: contain;">
-      </span>
-      <div style="flex: 1; min-width: 0;">
-        <div style="font-size: 13.5px; font-weight: 700; color: #f5f8fc;">ثبّت التطبيق على جهازك</div>
-        <div style="font-size: 12px; color: #93a0bb;">وصول أسرع من الشاشة الرئيسية بدون فتح المتصفح</div>
+  <div id="installInstructions" class="eu-hidden" style="position: fixed; inset: 0; background: rgba(2,4,10,0.72); backdrop-filter: blur(4px); z-index: 260; display: flex; align-items: center; justify-content: center; padding: 24px;">
+    <div style="width: 100%; max-width: 420px; border-radius: 20px; background: #0b1220; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding: 26px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+        <span style="font-size: 16px; font-weight: 700; color: #f5f8fc;">إضافة التطبيق إلى الشاشة الرئيسية</span>
+        <button type="button" id="closeInstructionsBtn" aria-label="إغلاق" style="all: unset; cursor: pointer; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
-      <button type="button" onClick="{{ installClick }}" style="all: unset; cursor: pointer; padding: 9px 16px; border-radius: 10px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 13px; white-space: nowrap;">تثبيت</button>
-      <button type="button" onClick="{{ dismissInstallBanner }}" aria-label="إغلاق" style="all: unset; cursor: pointer; color: #6b7690; flex-shrink: 0;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{ installInstructionsOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; inset: 0; background: rgba(2,4,10,0.72); backdrop-filter: blur(4px); z-index: 260; display: flex; align-items: center; justify-content: center; padding: 24px;">
-      <div style="width: 100%; max-width: 420px; border-radius: 20px; background: #0b1220; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding: 26px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
-          <span style="font-size: 16px; font-weight: 700; color: #f5f8fc;">إضافة التطبيق إلى الشاشة الرئيسية</span>
-          <button onClick="{{ closeInstallInstructions }}" aria-label="إغلاق" class="eu-close" style="all: unset; cursor: pointer; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
+      <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13.5px; color: #c3cde3; line-height: 1.7;">
+        <div>
+          <div style="font-weight: 700; color: #f5f8fc; margin-bottom: 4px;">آيفون (Safari)</div>
+          <div>اضغط زر المشاركة (Share) بالأسفل، ثم اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).</div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13.5px; color: #c3cde3; line-height: 1.7;">
-          <div>
-            <div style="font-weight: 700; color: #f5f8fc; margin-bottom: 4px;">آيفون (Safari)</div>
-            <div>اضغط زر المشاركة (Share) بالأسفل، ثم اختر "إضافة إلى الشاشة الرئيسية" (Add to Home Screen).</div>
-          </div>
-          <div>
-            <div style="font-weight: 700; color: #f5f8fc; margin-bottom: 4px;">أندرويد (Chrome)</div>
-            <div>اضغط قائمة الثلاث نقاط (⋮) أعلى المتصفح، ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </sc-if>
-
-  <!-- HERO -->
-  <div style="position: relative; overflow: hidden; padding-bottom: 8px;">
-    <div class="eu-starfield-bright" style="pointer-events: none; z-index: 0;"></div>
-    <div class="eu-starfield-glow" style="pointer-events: none; z-index: 0;"></div>
-    <div class="eu-nebula n1" style="z-index: 0;"></div>
-    <div class="eu-nebula n2" style="z-index: 0;"></div>
-    <img src="./assets/a98ba844f21c015c1c6d652fc615da38.png" alt="" class="eu-logo-float" style="position: absolute; top: 44%; left: 50%; width: 560px; max-width: 80%; opacity: 0.16; z-index: 0; pointer-events: none;">
-    <div class="eu-shoot s1"></div>
-    <div class="eu-shoot s2"></div>
-    <div class="eu-shoot s3"></div>
-    <div class="eu-shoot s4"></div>
-    <div class="eu-shoot s5"></div>
-    <div class="eu-shoot s6"></div>
-    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, #050810 100%); z-index: 0; pointer-events: none;"></div>
-
-    <div style="position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 56px 32px 36px; display: flex; flex-direction: column; align-items: center; gap: 26px; text-align: center;">
-      <div style="width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle at 50% 40%, rgba(53,197,201,0.28), rgba(53,197,201,0.02) 70%); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 20px 55px rgba(0,0,0,0.45);">
-        <img src="./assets/7929ee891c99567d0c476a274dc09678.png" alt="شعار Esthetic Universe" style="width: 96px; height: 96px; object-fit: contain;">
-      </div>
-      <div>
-        <div style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800; letter-spacing: .5px; color: #f5f8fc;">Esthetic Universe</div>
-        <div style="margin-top: 6px; font-size: 15px; font-weight: 500; color: #93a0bb;">نظام إدارة مختبر تقنية الأسنان</div>
-      </div>
-      <div style="display: flex; align-items: center; gap: 14px; width: 100%; max-width: 720px; flex-wrap: wrap; justify-content: center;">
-        <label style="flex: 1 1 300px; min-width: 230px; position: relative; display: flex; align-items: center;">
-          <span style="position: absolute; right: 16px; display: flex; color: #5c6b8a;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          </span>
-          <input type="text" value="{{ searchValue }}" onChange="{{ onSearchChange }}" placeholder="ابحث باسم الطبيب أو العيادة..." style="width: 100%; padding: 12px 46px 12px 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-          <button type="button" onClick="{{ searchMicClick }}" title="البحث بالصوت" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; left: 10px; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: {{ searchMicBg }}; color: {{ searchMicColor }};">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-          </button>
-        </label>
-        <div style="display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: #c3cde3; font-size: 14px; white-space: nowrap;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-          <span>{{ dateStr }}</span>
+        <div>
+          <div style="font-weight: 700; color: #f5f8fc; margin-bottom: 4px;">أندرويد (Chrome)</div>
+          <div>اضغط قائمة الثلاث نقاط (⋮) أعلى المتصفح، ثم اختر "تثبيت التطبيق" أو "إضافة إلى الشاشة الرئيسية".</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
-  <div style="position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 8px 32px 72px; display: flex; flex-direction: column; gap: 40px;">
+  <div class="eu-starfield-bright" style="pointer-events: none; z-index: 0;"></div>
+  <div class="eu-starfield-glow" style="pointer-events: none; z-index: 0;"></div>
+  <div class="eu-nebula n1" style="z-index: 0;"></div>
+  <div class="eu-nebula n2" style="z-index: 0;"></div>
+  <div class="eu-nebula n3" style="z-index: 0;"></div>
+  <div class="eu-shoot s1"></div>
+  <div class="eu-shoot s2"></div>
+  <div class="eu-shoot s3"></div>
+  <div class="eu-shoot s4"></div>
+  <div class="eu-shoot s5"></div>
+  <div class="eu-shoot s6"></div>
 
-    <!-- CASES OVERVIEW -->
-    <div>
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 0 0 16px;">
-        <h2 style="font-size: 19px; font-weight: 700; color: #f5f8fc; margin: 0;">نظرة عامة على الحالات</h2>
-        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-          <button type="button" onClick="{{ exportBackup }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 12px; border: 1px solid rgba(96,165,250,0.35); background: rgba(96,165,250,0.12); color: #60a5fa; font-weight: 700; font-size: 13.5px; white-space: nowrap;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span>تصدير البيانات (Excel/CSV)</span>
-          </button>
-          <button onClick="{{ openModal }}" style="all: unset; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 12px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>إضافة حالة جديدة</span>
-          </button>
-        </div>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px;">
+  <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center; max-width: 560px;">
 
-        <button onClick="{{ pickLate }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; border: 1px solid {{ lateBorder }}; background: {{ lateBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(248,113,113,0.15); color: #f87171;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-            </span>
-            <span style="font-size: 26px; font-weight: 800; color: #f87171;">{{ lateCount }}</span>
-          </div>
-          <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">الحالات المتأخرة</span>
-          <sc-if value="{{ hasOverdue }}" hint-placeholder-val="{{ false }}">
-            <span style="font-size: 11.5px; font-weight: 700; color: #f87171;">{{ overdueCount }} حالة تجاوزت تاريخ التسليم</span>
-          </sc-if>
-        </button>
+    <img src="./assets/logo-full.png" alt="Esthetic Universe" class="eu-logo-float" style="width: 380px; max-width: 78vw; filter: drop-shadow(0 18px 46px rgba(53,197,201,0.22));" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
 
-        <button onClick="{{ pickProgress }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; border: 1px solid {{ progressBorder }}; background: {{ progressBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(251,191,36,0.15); color: #fbbf24;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><polyline points="21 3 21 9 15 9"></polyline></svg>
-            </span>
-            <span style="font-size: 26px; font-weight: 800; color: #fbbf24;">{{ progressCount }}</span>
-          </div>
-          <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">قيد الإنتاج</span>
-        </button>
-
-        <button onClick="{{ pickCompleted }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; border: 1px solid {{ completedBorder }}; background: {{ completedBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(46,198,198,0.15); color: #2ec6c6;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12.5 11 15.5 16 9"></polyline></svg>
-            </span>
-            <span style="font-size: 26px; font-weight: 800; color: #2ec6c6;">{{ completedCount }}</span>
-          </div>
-          <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">حالات مكتملة</span>
-        </button>
-
-        <button onClick="{{ pickDelivered }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; border: 1px solid {{ deliveredBorder }}; background: {{ deliveredBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(74,222,128,0.15); color: #4ade80;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"></path><path d="M3 8l9 5 9-5"></path><path d="M12 13v8"></path></svg>
-            </span>
-            <span style="font-size: 26px; font-weight: 800; color: #4ade80;">{{ deliveredCount }}</span>
-          </div>
-          <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">تم تسليمها</span>
-        </button>
-
-        <button onClick="{{ pickPending }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 16px; border: 1px solid {{ pendingBorder }}; background: {{ pendingBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(167,139,250,0.15); color: #a78bfa;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
-            </span>
-            <span style="font-size: 26px; font-weight: 800; color: #a78bfa;">{{ pendingCount }}</span>
-          </div>
-          <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">بانتظار التسليم</span>
-        </button>
-
-      </div>
+    <div id="logoFallback" style="display: none; flex-direction: column; align-items: center; gap: 6px;">
+      <span style="font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 800; letter-spacing: .5px; color: #f5f8fc;">Esthetic Universe</span>
     </div>
 
-    <!-- FINANCE & MATERIALS -->
-    <div>
-      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 0 0 16px;">
-        <h2 style="font-size: 19px; font-weight: 700; color: #f5f8fc; margin: 0;">المالية والمخزون</h2>
-        <button type="button" onClick="{{ exportBackup }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 12px; border: 1px solid rgba(96,165,250,0.35); background: rgba(96,165,250,0.12); color: #60a5fa; font-weight: 700; font-size: 13.5px; white-space: nowrap;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          <span>تصدير البيانات (Excel/CSV)</span>
-        </button>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px;">
-
-        <button onClick="{{ pickProfits }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 16px; border: 1px solid {{ profitsBorder }}; background: {{ profitsBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(74,222,128,0.15); color: #4ade80;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="14 7 21 7 21 14"></polyline></svg>
-            </span>
-            <span style="font-size: 19px; font-weight: 800; color: #4ade80;">{{ profitsTotal }}</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">الأرباح الإجمالية</span>
-            <span style="font-size: 12px; color: #6b7690;">من {{ profitsCasesCount }} حالة مدفوعة</span>
-          </div>
-        </button>
-
-        <button onClick="{{ pickDebts }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 16px; border: 1px solid {{ debtsBorder }}; background: {{ debtsBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(249,115,22,0.15); color: #f97316;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"></path><path d="M14 3v5h5"></path><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
-            </span>
-            <span style="font-size: 19px; font-weight: 800; color: #f97316;">{{ debtsTotal }}</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">الديون / المستحقات على العيادات</span>
-            <span style="font-size: 12px; color: #6b7690;">من {{ debtsClinicsCount }} حالة</span>
-          </div>
-        </button>
-
-        <button onClick="{{ pickMaterials }}" class="eu-card" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 16px; border: 1px solid {{ materialsBorder }}; background: {{ materialsBg }}; min-height: 128px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(96,165,250,0.15); color: #60a5fa;">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4 20a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3L15 8V2"></path><line x1="9" y1="2" x2="15" y2="2"></line></svg>
-            </span>
-            <span style="font-size: 19px; font-weight: 800; color: #60a5fa;">{{ materialsTotal }}</span>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-size: 13.5px; font-weight: 600; color: #c3cde3;">المواد والمخزون</span>
-            <span style="font-size: 12px; color: #6b7690;">من {{ materialsCount }} مادة مسجلة</span>
-          </div>
-        </button>
-
-      </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 15.5px; font-weight: 500; color: #93a0bb;">نظام إدارة مختبر تقنية الأسنان</span>
     </div>
 
-    <!-- DETAILS PANEL -->
-    <div style="border-radius: 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09); overflow: hidden;">
-
-      <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ true }}">
-        <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; gap: 12px;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: {{ detailsColor }};"></span>
-            <span style="font-size: 16px; font-weight: 700; color: #f5f8fc;">{{ detailsLabel }}</span>
-            <span style="font-size: 13px; color: #6b7690;">{{ detailsMeta }}</span>
-          </div>
-          <button onClick="{{ clearSelection }}" aria-label="إغلاق" class="eu-close" style="all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-
-        <sc-if value="{{ isCaseCategory }}" hint-placeholder-val="{{ true }}">
-          <div style="overflow-x: auto;">
-            <table style="width: 100%; font-size: 14px;">
-              <thead><tr style="color: #93a0bb; font-weight: 600;">
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">اسم الطبيب</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">اسم المريض</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">نوع العمل</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">حالة الطلب</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">تاريخ التسليم</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الإجراءات</th>
-              </tr></thead>
-              <tbody>
-              <sc-for list="{{ activeRowsFiltered }}" as="row" hint-placeholder-count="5">
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                  <td style="padding: 14px 24px; font-weight: 600; color: #eef1f8; white-space: nowrap;">{{ row.doctor }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3; white-space: nowrap;">{{ row.patient }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3;">{{ row.workType }}</td>
-                  <td style="padding: 14px 24px;"><span style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: {{ row.statusBg }}; color: {{ row.statusColor }}; font-weight: 600; font-size: 12px; white-space: nowrap;">{{ row.statusLabel }}</span></td>
-                  <td style="padding: 14px 24px; white-space: nowrap;">
-                    <span style="color: {{ row.dateColor }}; font-weight: 600;">{{ row.deliveryDate }}</span>
-                    <sc-if value="{{ row.isOverdue }}" hint-placeholder-val="{{ false }}">
-                      <span style="display: inline-block; margin-inline-start: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(248,113,113,0.16); color: #f87171; font-size: 11px; font-weight: 700;">متأخر</span>
-                    </sc-if>
-                  </td>
-                  <td style="padding: 14px 24px; position: relative;">
-                    <button type="button" onClick="{{ row.toggleMenu }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
-                      <span>تعديل الحالة</span>
-                    </button>
-                    <sc-if value="{{ row.menuOpen }}" hint-placeholder-val="{{ false }}">
-                      <div onClick="{{ row.closeMenu }}" style="position: fixed; inset: 0; z-index: 60;"></div>
-                      <div role="listbox" style="position: absolute; top: calc(100% + 6px); left: 0; min-width: 190px; z-index: 61; background: #f4f6fa; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 18px 44px rgba(0,0,0,0.4); padding: 6px;">
-                        <div style="padding: 8px 10px 4px; font-size: 11.5px; font-weight: 700; color: #6b7690;">نقل الحالة إلى</div>
-                        <sc-for list="{{ row.otherStatuses }}" as="opt" hint-placeholder-count="4">
-                          <button type="button" onClick="{{ opt.pick }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: transparent; font-size: 13.5px; font-weight: 500;">
-                            <span style="width: 8px; height: 8px; border-radius: 50%; background: {{ opt.dot }};"></span>
-                            <span>{{ opt.label }}</span>
-                          </button>
-                        </sc-for>
-                        <div style="height: 1px; background: rgba(15,23,42,0.08); margin: 6px 4px;"></div>
-                        <div style="padding: 8px 10px 4px; font-size: 11.5px; font-weight: 700; color: #6b7690;">حالة الدفع</div>
-                        <button type="button" onClick="{{ row.markPaid }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: {{ row.paidOptionBg }}; font-size: 13.5px; font-weight: 500;">
-                          <span style="width: 8px; height: 8px; border-radius: 50%; background: #4ade80;"></span>
-                          <span>مدفوع بالكامل</span>
-                        </button>
-                        <button type="button" onClick="{{ row.markUnpaid }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: {{ row.unpaidOptionBg }}; font-size: 13.5px; font-weight: 500;">
-                          <span style="width: 8px; height: 8px; border-radius: 50%; background: #f97316;"></span>
-                          <span>غير مدفوع</span>
-                        </button>
-                      </div>
-                    </sc-if>
-                  </td>
-                </tr>
-              </sc-for>
-              </tbody>
-            </table>
-            <sc-if value="{{ activeEmptyNoData }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد حالات حالياً في هذا التصنيف</p>
-            </sc-if>
-            <sc-if value="{{ activeEmptyWithSearch }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد نتائج مطابقة للبحث</p>
-            </sc-if>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{ isProfits }}" hint-placeholder-val="{{ false }}">
-          <div style="overflow-x: auto;">
-            <table style="width: 100%; font-size: 14px;">
-              <thead><tr style="color: #93a0bb; font-weight: 600;">
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الطبيب</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">العيادة</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">المريض</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">المبلغ المدفوع</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">حالة الطلب</th>
-              </tr></thead>
-              <tbody>
-              <sc-for list="{{ profitsRowsFiltered }}" as="row" hint-placeholder-count="4">
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                  <td style="padding: 14px 24px; font-weight: 600; color: #eef1f8; white-space: nowrap;">{{ row.doctor }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3;">{{ row.clinic }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3; white-space: nowrap;">{{ row.patient }}</td>
-                  <td style="padding: 14px 24px; color: #4ade80; font-weight: 700; white-space: nowrap;">{{ row.paidText }}</td>
-                  <td style="padding: 14px 24px;"><span style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: {{ row.statusBg }}; color: {{ row.statusColor }}; font-weight: 600; font-size: 12px; white-space: nowrap;">{{ row.statusLabel }}</span></td>
-                </tr>
-              </sc-for>
-              </tbody>
-            </table>
-            <sc-if value="{{ profitsEmptyNoData }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد بيانات أرباح حالياً</p>
-            </sc-if>
-            <sc-if value="{{ profitsEmptyWithSearch }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد نتائج مطابقة للبحث</p>
-            </sc-if>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{ isDebts }}" hint-placeholder-val="{{ false }}">
-          <div style="overflow-x: auto;">
-            <table style="width: 100%; font-size: 14px;">
-              <thead><tr style="color: #93a0bb; font-weight: 600;">
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الطبيب</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">العيادة</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">المريض</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">المبلغ المتبقي</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">حالة الطلب</th>
-              </tr></thead>
-              <tbody>
-              <sc-for list="{{ debtsRowsFiltered }}" as="row" hint-placeholder-count="4">
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                  <td style="padding: 14px 24px; font-weight: 600; color: #eef1f8; white-space: nowrap;">{{ row.doctor }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3;">{{ row.clinic }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3; white-space: nowrap;">{{ row.patient }}</td>
-                  <td style="padding: 14px 24px; color: #f97316; font-weight: 700; white-space: nowrap;">{{ row.remainingText }}</td>
-                  <td style="padding: 14px 24px;"><span style="display: inline-block; padding: 4px 12px; border-radius: 999px; background: {{ row.statusBg }}; color: {{ row.statusColor }}; font-weight: 600; font-size: 12px; white-space: nowrap;">{{ row.statusLabel }}</span></td>
-                </tr>
-              </sc-for>
-              </tbody>
-            </table>
-            <sc-if value="{{ debtsEmptyNoData }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد ديون أو مستحقات حالياً</p>
-            </sc-if>
-            <sc-if value="{{ debtsEmptyWithSearch }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد نتائج مطابقة للبحث</p>
-            </sc-if>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{ isMaterials }}" hint-placeholder-val="{{ false }}">
-          <div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; padding: 16px 24px 0;">
-            <button type="button" onClick="{{ exportBackup }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(96,165,250,0.35); background: rgba(96,165,250,0.12); color: #60a5fa; font-weight: 700; font-size: 13.5px; white-space: nowrap;">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              <span>تصدير البيانات (Excel/CSV)</span>
-            </button>
-            <button type="button" onClick="{{ openMaterialModal }}" style="all: unset; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 13.5px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>إضافة مادة جديدة</span>
-            </button>
-          </div>
-          <div style="overflow-x: auto;">
-            <table style="width: 100%; font-size: 14px;">
-              <thead><tr style="color: #93a0bb; font-weight: 600;">
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">اسم المادة</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الكمية المتوفرة</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">سعر الشراء</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">تاريخ الشراء</th>
-                <th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الإجراءات</th>
-              </tr></thead>
-              <tbody>
-              <sc-for list="{{ materialsRowsFiltered }}" as="row" hint-placeholder-count="5">
-                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                  <td style="padding: 14px 24px; font-weight: 600; color: #eef1f8; white-space: nowrap;">{{ row.name }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3;">{{ row.qtyText }}</td>
-                  <td style="padding: 14px 24px; color: #4ade80; font-weight: 700; white-space: nowrap;">{{ row.priceText }}</td>
-                  <td style="padding: 14px 24px; color: #c3cde3; white-space: nowrap;">{{ row.purchaseDate }}</td>
-                  <td style="padding: 14px 24px; position: relative;">
-                    <button type="button" onClick="{{ row.toggleMenu }}" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1.4"></circle><circle cx="12" cy="12" r="1.4"></circle><circle cx="12" cy="19" r="1.4"></circle></svg>
-                      <span>خيارات</span>
-                    </button>
-                    <sc-if value="{{ row.menuOpen }}" hint-placeholder-val="{{ false }}">
-                      <div onClick="{{ row.closeMenu }}" style="position: fixed; inset: 0; z-index: 60;"></div>
-                      <div role="listbox" style="position: absolute; top: calc(100% + 6px); left: 0; min-width: 170px; z-index: 61; background: #f4f6fa; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 18px 44px rgba(0,0,0,0.4); padding: 6px;">
-                        <button type="button" onClick="{{ row.editPick }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: transparent; font-size: 13.5px; font-weight: 500;">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2196a3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg>
-                          <span>تعديل الكمية / السعر</span>
-                        </button>
-                        <button type="button" onClick="{{ row.deletePick }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #ef4444; background: transparent; font-size: 13.5px; font-weight: 500;">
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                          <span>حذف المادة</span>
-                        </button>
-                      </div>
-                    </sc-if>
-                  </td>
-                </tr>
-              </sc-for>
-              </tbody>
-            </table>
-            <sc-if value="{{ materialsEmptyNoData }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد مواد مسجلة في المخزون حالياً</p>
-            </sc-if>
-            <sc-if value="{{ materialsEmptyWithSearch }}" hint-placeholder-val="{{ false }}">
-              <p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد نتائج مطابقة للبحث</p>
-            </sc-if>
-          </div>
-        </sc-if>
-
-      </sc-if>
-
-      <sc-if value="{{ noSelection }}" hint-placeholder-val="{{ false }}">
-        <div style="padding: 52px 24px; text-align: center; color: #6b7690;">
-          <p style="margin: 0; font-size: 14px;">اضغط على أي بطاقة أعلاه لعرض تفاصيلها هنا</p>
-        </div>
-      </sc-if>
-
-    </div>
+    <a href="./dashboard.html" class="eu-enter-btn">
+      <span>الدخول إلى الموقع</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="11 6 5 12 11 18"></polyline></svg>
+    </a>
 
   </div>
-
-  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; inset: 0; background: rgba(2,4,10,0.72); backdrop-filter: blur(4px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px;">
-      <div style="width: 100%; max-width: 520px; max-height: 88vh; overflow-y: auto; border-radius: 20px; background: #0b1220; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding: 26px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
-          <span style="font-size: 17px; font-weight: 700; color: #f5f8fc;">إضافة حالة جديدة</span>
-          <button onClick="{{ closeModal }}" aria-label="إغلاق" class="eu-close" style="all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <label style="display: flex; flex-direction: column; gap: 6px; position: relative;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">اسم الطبيب / العيادة</span>
-            <input type="text" value="{{ formName }}" onChange="{{ onFormNameChange }}" placeholder="مثال: د. أحمد الجبوري" style="width: 100%; padding: 12px 44px 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            <button type="button" onClick="{{ doctorMicClick }}" title="إدخال بالصوت" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; left: 10px; bottom: 9px; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: {{ doctorMicBg }}; color: {{ doctorMicColor }};">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-            </button>
-          </label>
-
-          <label style="display: flex; flex-direction: column; gap: 6px; position: relative;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">اسم المريض</span>
-            <input type="text" value="{{ formPatient }}" onChange="{{ onFormPatientChange }}" placeholder="اسم المريض" style="width: 100%; padding: 12px 44px 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            <button type="button" onClick="{{ patientMicClick }}" title="إدخال بالصوت" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; left: 10px; bottom: 9px; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: {{ patientMicBg }}; color: {{ patientMicColor }};">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-            </button>
-          </label>
-
-          <div style="display: flex; flex-direction: column; gap: 6px; position: relative;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">نوع التركيبة</span>
-            <button type="button" onClick="{{ toggleMaterialDropdown }}" aria-haspopup="listbox" style="all: unset; box-sizing: border-box; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px; cursor: pointer;">
-              <span>{{ formMaterial }}</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7690; transform: {{ materialChevron }};"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <sc-if value="{{ materialDropdownOpen }}" hint-placeholder-val="{{ false }}">
-              <div onClick="{{ closeDropdowns }}" style="position: fixed; inset: 0; z-index: 60;"></div>
-              <div role="listbox" style="position: absolute; top: calc(100% + 6px); right: 0; left: 0; z-index: 61; background: #f4f6fa; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 18px 44px rgba(0,0,0,0.4); padding: 6px; max-height: 260px; overflow-y: auto;">
-                <sc-for list="{{ materialOptions }}" as="opt" hint-placeholder-count="6">
-                  <button type="button" onClick="{{ opt.pick }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: {{ opt.bg }}; font-size: 14px; font-weight: {{ opt.weight }};">
-                    <span>{{ opt.label }}</span>
-                    <sc-if value="{{ opt.selected }}" hint-placeholder-val="{{ false }}">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2196a3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </sc-if>
-                  </button>
-                </sc-for>
-              </div>
-            </sc-if>
-          </div>
-
-          <div style="display: flex; flex-direction: column; gap: 6px; position: relative;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">حالة الطلب</span>
-            <button type="button" onClick="{{ toggleStatusDropdown }}" aria-haspopup="listbox" style="all: unset; box-sizing: border-box; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px; cursor: pointer;">
-              <span style="display: flex; align-items: center; gap: 8px;">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background: {{ formStatusColor }};"></span>
-                <span>{{ formStatusLabel }}</span>
-              </span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7690; transform: {{ statusChevron }};"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-            <sc-if value="{{ statusDropdownOpen }}" hint-placeholder-val="{{ false }}">
-              <div onClick="{{ closeDropdowns }}" style="position: fixed; inset: 0; z-index: 60;"></div>
-              <div role="listbox" style="position: absolute; top: calc(100% + 6px); right: 0; left: 0; z-index: 61; background: #f4f6fa; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 18px 44px rgba(0,0,0,0.4); padding: 6px;">
-                <sc-for list="{{ statusOptions }}" as="opt" hint-placeholder-count="5">
-                  <button type="button" onClick="{{ opt.pick }}" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: {{ opt.bg }}; font-size: 14px; font-weight: {{ opt.weight }};">
-                    <span style="display: flex; align-items: center; gap: 8px;">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: {{ opt.dot }};"></span>
-                      <span>{{ opt.label }}</span>
-                    </span>
-                    <sc-if value="{{ opt.selected }}" hint-placeholder-val="{{ false }}">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2196a3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </sc-if>
-                  </button>
-                </sc-for>
-              </div>
-            </sc-if>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">تاريخ الاستلام</span>
-              <input type="date" value="{{ formOrderDate }}" onChange="{{ onFormOrderDateChange }}" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px; color-scheme: dark;">
-            </label>
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">تاريخ التسليم المتوقع</span>
-              <input type="date" value="{{ formDueDate }}" onChange="{{ onFormDueDateChange }}" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px; color-scheme: dark;">
-            </label>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">المبلغ الإجمالي (د.ع)</span>
-              <input type="number" value="{{ formTotal }}" onChange="{{ onFormTotalChange }}" placeholder="0" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            </label>
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">المبلغ المدفوع (د.ع)</span>
-              <input type="number" value="{{ formPaid }}" onChange="{{ onFormPaidChange }}" placeholder="0" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            </label>
-          </div>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-          <button onClick="{{ closeModal }}" style="all: unset; cursor: pointer; padding: 12px 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); color: #c3cde3; font-weight: 600; font-size: 14px;">إلغاء</button>
-          <button onClick="{{ saveCase }}" style="all: unset; cursor: pointer; padding: 12px 26px; border-radius: 10px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">حفظ</button>
-        </div>
-      </div>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{ materialsModalOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="position: fixed; inset: 0; background: rgba(2,4,10,0.72); backdrop-filter: blur(4px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 24px;">
-      <div style="width: 100%; max-width: 460px; max-height: 88vh; overflow-y: auto; border-radius: 20px; background: #0b1220; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding: 26px;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px;">
-          <span style="font-size: 17px; font-weight: 700; color: #f5f8fc;">{{ materialModalTitle }}</span>
-          <button onClick="{{ closeMaterialModal }}" aria-label="إغلاق" class="eu-close" style="all: unset; cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #93a0bb;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          </button>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <label style="display: flex; flex-direction: column; gap: 6px;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">اسم المادة</span>
-            <input type="text" value="{{ materialFormName }}" onChange="{{ onMaterialNameChange }}" placeholder="مثال: كتل زركون" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-          </label>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">الكمية</span>
-              <input type="number" value="{{ materialFormQty }}" onChange="{{ onMaterialQtyChange }}" placeholder="0" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            </label>
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">سعر الشراء (د.ع)</span>
-              <input type="number" value="{{ materialFormPrice }}" onChange="{{ onMaterialPriceChange }}" placeholder="0" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px;">
-            </label>
-          </div>
-
-          <label style="display: flex; flex-direction: column; gap: 6px;">
-            <span style="font-size: 13px; font-weight: 600; color: #93a0bb;">تاريخ الشراء</span>
-            <input type="date" value="{{ materialFormDate }}" onChange="{{ onMaterialDateChange }}" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 14px; color-scheme: dark;">
-          </label>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin-top: 24px;">
-          <button onClick="{{ closeMaterialModal }}" style="all: unset; cursor: pointer; padding: 12px 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); color: #c3cde3; font-weight: 600; font-size: 14px;">إلغاء</button>
-          <button onClick="{{ saveMaterial }}" style="all: unset; cursor: pointer; padding: 12px 26px; border-radius: 10px; background: linear-gradient(135deg, #35c5c9, #2196a3); color: #04141a; font-weight: 700; font-size: 14px; box-shadow: 0 8px 24px rgba(53,197,201,0.3);">حفظ</button>
-        </div>
-      </div>
-    </div>
-  </sc-if>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
-class Component extends DCLogic {
-  state = {
-    selected: null,
-    search: '',
-    modalOpen: false,
-    openDropdown: null,
-    statusMenuFor: null,
-    form: { name: '', patient: '', material: 'زركون', status: 'late', total: '', paid: '', orderDate: '', dueDate: '' },
-    materialsModalOpen: false,
-    materialEditingId: null,
-    materialsMenuFor: null,
-    materialForm: { name: '', qty: '', price: '', purchaseDate: '' },
-    voiceListeningFor: null,
-    alerts: [],
-    installDismissed: false,
-    installInstructionsOpen: false
-  };
 
-  idCounter = 0;
+<script>
+(function () {
+  var deferredPrompt = null;
+  var banner = document.getElementById('installBanner');
+  var instructions = document.getElementById('installInstructions');
 
-  materialsIdCounter = 0;
-
-  alertIdCounter = 0;
-
-  notifiedOverdueIds = new Set();
-
-  notifiedLowStockIds = new Set();
-
-  lateRows = [];
-
-  progressRows = [];
-
-  completedRows = [];
-
-  deliveredRows = [];
-
-  pendingRows = [];
-
-  materialsRows = [];
-
-  componentDidMount() {
-    this.requestNotificationPermission();
-    this.checkAlerts();
-    this.alertInterval = setInterval(() => this.checkAlerts(), 60000);
-    this.setupPwa();
-  }
-
-  componentWillUnmount() {
-    if (this.alertInterval) clearInterval(this.alertInterval);
-    if (this.recognition) {
-      try { this.recognition.stop(); } catch (e) {}
-    }
-    if (this.onBeforeInstallPrompt) {
-      try { window.removeEventListener('beforeinstallprompt', this.onBeforeInstallPrompt); } catch (e) {}
-    }
-    if (this.onAppInstalled) {
-      try { window.removeEventListener('appinstalled', this.onAppInstalled); } catch (e) {}
-    }
-  }
-
-  isStandalone() {
+  function isStandalone() {
     try {
       return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true;
-    } catch (e) {
-      return false;
+    } catch (e) { return false; }
+  }
+  function isMobileDevice() {
+    try { return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || ''); } catch (e) { return false; }
+  }
+  function maybeShowBanner() {
+    if (isMobileDevice() && !isStandalone() && sessionStorage.getItem('eu_install_dismissed') !== '1') {
+      banner.classList.remove('eu-hidden');
     }
   }
 
-  isMobileDevice() {
-    try {
-      return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
-    } catch (e) {
-      return false;
-    }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js').catch(function () {});
   }
 
-  setupPwa() {
-    try {
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./service-worker.js').catch(() => {});
-      }
-    } catch (e) {}
-    try {
-      this.onBeforeInstallPrompt = (e) => {
-        e.preventDefault();
-        this.deferredPrompt = e;
-        this.forceUpdate();
-      };
-      this.onAppInstalled = () => {
-        this.deferredPrompt = null;
-        this.setState({ installDismissed: true });
-      };
-      window.addEventListener('beforeinstallprompt', this.onBeforeInstallPrompt);
-      window.addEventListener('appinstalled', this.onAppInstalled);
-    } catch (e) {}
-  }
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    maybeShowBanner();
+  });
+  window.addEventListener('appinstalled', function () {
+    deferredPrompt = null;
+    banner.classList.add('eu-hidden');
+  });
 
-  installClick() {
-    if (this.deferredPrompt) {
-      const prompt = this.deferredPrompt;
-      this.deferredPrompt = null;
-      prompt.prompt();
-      if (prompt.userChoice && prompt.userChoice.finally) {
-        prompt.userChoice.finally(() => this.forceUpdate());
-      }
+  document.getElementById('installBtn').addEventListener('click', function () {
+    if (deferredPrompt) {
+      var p = deferredPrompt;
+      deferredPrompt = null;
+      p.prompt();
     } else {
-      this.setState({ installInstructionsOpen: true });
+      instructions.classList.remove('eu-hidden');
     }
-  }
+  });
+  document.getElementById('dismissInstallBtn').addEventListener('click', function () {
+    banner.classList.add('eu-hidden');
+    try { sessionStorage.setItem('eu_install_dismissed', '1'); } catch (e) {}
+  });
+  document.getElementById('closeInstructionsBtn').addEventListener('click', function () {
+    instructions.classList.add('eu-hidden');
+  });
 
-  dismissInstallBanner() {
-    this.setState({ installDismissed: true });
-  }
-
-  closeInstallInstructions() {
-    this.setState({ installInstructionsOpen: false });
-  }
-
-  requestNotificationPermission() {
-    try {
-      if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
-        Notification.requestPermission().catch(() => {});
-      }
-    } catch (e) {}
-  }
-
-  sendBrowserNotification(title, body) {
-    try {
-      if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
-        new Notification(title, { body });
-      }
-    } catch (e) {}
-  }
-
-  playAlertSound() {
-    try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = 880;
-      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.25, ctx.currentTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.55);
-    } catch (e) {}
-  }
-
-  dismissAlert(id) {
-    this.setState({ alerts: (this.state.alerts || []).filter((a) => a.id !== id) });
-  }
-
-  checkAlerts() {
-    const todayStr = new Date().toISOString().slice(0, 10);
-    const sources = {
-      late: this.lateRows,
-      inprogress: this.progressRows,
-      completed: this.completedRows,
-      delivered: this.deliveredRows,
-      pending: this.pendingRows
-    };
-    const newAlerts = [];
-    Object.keys(sources).forEach((statusId) => {
-      if (statusId === 'delivered') return;
-      sources[statusId].forEach((r) => {
-        const due = r.dueDate || r.expected || '';
-        if (due && due < todayStr && !this.notifiedOverdueIds.has(r.id)) {
-          this.notifiedOverdueIds.add(r.id);
-          const text = 'حالة متأخرة: ' + (r.doctor || '—') + ' — المريض ' + (r.patient || '—');
-          newAlerts.push({ text, kind: 'overdue' });
-          this.sendBrowserNotification('حالة متأخرة', text);
-        }
-      });
-    });
-    const LOW_STOCK_THRESHOLD = 5;
-    this.materialsRows.forEach((m) => {
-      if ((Number(m.qty) || 0) <= LOW_STOCK_THRESHOLD && !this.notifiedLowStockIds.has(m.id)) {
-        this.notifiedLowStockIds.add(m.id);
-        const text = 'المادة "' + m.name + '" أوشكت على النفاد (الكمية المتبقية: ' + m.qty + ')';
-        newAlerts.push({ text, kind: 'stock' });
-        this.sendBrowserNotification('تنبيه مخزون', text);
-      }
-    });
-    if (newAlerts.length) {
-      this.playAlertSound();
-      const withIds = newAlerts.map((a) => Object.assign({ id: 'alert-' + (++this.alertIdCounter) }, a));
-      this.setState({ alerts: (this.state.alerts || []).concat(withIds) });
-      withIds.forEach((a) => {
-        setTimeout(() => {
-          this.setState({ alerts: (this.state.alerts || []).filter((x) => x.id !== a.id) });
-        }, 7000);
-      });
-    }
-  }
-
-  startVoiceInput(targetField) {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) {
-      this.setState({
-        alerts: (this.state.alerts || []).concat([{ id: 'alert-' + (++this.alertIdCounter), text: 'المتصفح لا يدعم التعرف على الصوت', kind: 'stock' }])
-      });
-      return;
-    }
-    if (this.recognition) {
-      try { this.recognition.stop(); } catch (e) {}
-    }
-    const recog = new SR();
-    recog.lang = 'ar-SA';
-    recog.interimResults = false;
-    recog.maxAlternatives = 1;
-    this.recognition = recog;
-    this.setState({ voiceListeningFor: targetField });
-    recog.onresult = (event) => {
-      const transcript = (event.results && event.results[0] && event.results[0][0] && event.results[0][0].transcript) || '';
-      if (targetField === 'search') {
-        this.setState({ search: transcript, voiceListeningFor: null });
-      } else if (targetField === 'doctor') {
-        this.setFormField('name', transcript);
-        this.setState({ voiceListeningFor: null });
-      } else if (targetField === 'patient') {
-        this.setFormField('patient', transcript);
-        this.setState({ voiceListeningFor: null });
-      }
-    };
-    recog.onerror = () => {
-      this.setState({ voiceListeningFor: null });
-    };
-    recog.onend = () => {
-      if (this.state.voiceListeningFor === targetField) this.setState({ voiceListeningFor: null });
-    };
-    try {
-      recog.start();
-    } catch (e) {
-      this.setState({ voiceListeningFor: null });
-    }
-  }
-
-  stopVoiceInput() {
-    if (this.recognition) {
-      try { this.recognition.stop(); } catch (e) {}
-    }
-    this.setState({ voiceListeningFor: null });
-  }
-
-  select(id) {
-    this.setState({ selected: this.state.selected === id ? null : id });
-  }
-
-  openModal() {
-    const today = new Date().toISOString().slice(0, 10);
-    this.setState({
-      modalOpen: true,
-      openDropdown: null,
-      form: { name: '', patient: '', material: 'زركون', status: 'late', total: '', paid: '', orderDate: today, dueDate: '' }
-    });
-  }
-
-  closeModal() {
-    this.setState({ modalOpen: false, openDropdown: null });
-  }
-
-  setFormField(key, value) {
-    this.setState({ form: Object.assign({}, this.state.form, { [key]: value }), openDropdown: null });
-  }
-
-  toggleDropdown(name) {
-    this.setState({ openDropdown: this.state.openDropdown === name ? null : name });
-  }
-
-  closeDropdowns() {
-    this.setState({ openDropdown: null });
-  }
-
-  saveCase() {
-    const f = this.state.form;
-    const today = new Date().toISOString().slice(0, 10);
-    const paidNum = Number(f.paid) || 0;
-    const totalNum = Number(f.total) || 0;
-    this.idCounter += 1;
-    const base = {
-      id: 'case-' + this.idCounter,
-      doctor: f.name.trim() || '—',
-      clinic: '—',
-      patient: f.patient.trim() || '—',
-      material: f.material,
-      paid: paidNum,
-      total: totalNum,
-      orderDate: f.orderDate || today,
-      dueDate: f.dueDate || ''
-    };
-    if (f.status === 'late') {
-      this.lateRows.unshift(Object.assign({ caseType: f.material, expected: today, late: '—' }, base));
-    } else if (f.status === 'inprogress') {
-      this.progressRows.unshift(Object.assign({ caseType: f.material, stage: 'قيد المعالجة', progress: 10, progressText: '10%', expected: today }, base));
-    } else if (f.status === 'completed') {
-      this.completedRows.unshift(Object.assign({ caseType: f.material, completedDate: today }, base));
-    } else if (f.status === 'delivered') {
-      this.deliveredRows.unshift(Object.assign({ deliveredDate: today }, base));
-    } else if (f.status === 'pending') {
-      this.pendingRows.unshift(Object.assign({ readyDate: today, notes: '—' }, base));
-    }
-    this.setState({ modalOpen: false, selected: f.status, search: '' });
-    this.checkAlerts();
-  }
-
-  toggleStatusMenu(rowId) {
-    this.setState({ statusMenuFor: this.state.statusMenuFor === rowId ? null : rowId });
-  }
-
-  closeStatusMenu() {
-    this.setState({ statusMenuFor: null });
-  }
-
-  moveCase(rowId, fromId, toId) {
-    const sources = {
-      late: this.lateRows,
-      inprogress: this.progressRows,
-      completed: this.completedRows,
-      delivered: this.deliveredRows,
-      pending: this.pendingRows
-    };
-    const fromArr = sources[fromId];
-    const idx = fromArr.findIndex((r) => r.id === rowId);
-    if (idx === -1) {
-      this.setState({ statusMenuFor: null });
-      return;
-    }
-    const row = Object.assign({}, fromArr[idx]);
-    fromArr.splice(idx, 1);
-    const today = new Date().toISOString().slice(0, 10);
-    if (toId === 'late') {
-      row.expected = row.expected || today;
-      row.late = row.late || '—';
-    } else if (toId === 'inprogress') {
-      row.stage = row.stage || 'قيد المعالجة';
-      row.progress = row.progress != null ? row.progress : 50;
-      row.progressText = row.progressText || (row.progress + '%');
-      row.expected = row.expected || today;
-    } else if (toId === 'completed') {
-      row.completedDate = today;
-    } else if (toId === 'delivered') {
-      row.deliveredDate = today;
-    } else if (toId === 'pending') {
-      row.readyDate = today;
-      row.notes = row.notes || '—';
-    }
-    sources[toId].unshift(row);
-    this.setState({ statusMenuFor: null, selected: toId, search: '' });
-    this.checkAlerts();
-  }
-
-  setPayment(rowId, statusId, newPaid) {
-    const sources = {
-      late: this.lateRows,
-      inprogress: this.progressRows,
-      completed: this.completedRows,
-      delivered: this.deliveredRows,
-      pending: this.pendingRows
-    };
-    const arr = sources[statusId];
-    const row = arr && arr.find((r) => r.id === rowId);
-    if (row) {
-      row.paid = newPaid;
-    }
-    this.setState({ statusMenuFor: null });
-  }
-
-  openMaterialModal(editId) {
-    if (editId) {
-      const m = this.materialsRows.find((r) => r.id === editId);
-      if (!m) return;
-      this.setState({
-        materialsModalOpen: true,
-        materialEditingId: editId,
-        materialsMenuFor: null,
-        materialForm: { name: m.name, qty: String(m.qty), price: String(m.price), purchaseDate: m.purchaseDate || '' }
-      });
-    } else {
-      const today = new Date().toISOString().slice(0, 10);
-      this.setState({
-        materialsModalOpen: true,
-        materialEditingId: null,
-        materialsMenuFor: null,
-        materialForm: { name: '', qty: '', price: '', purchaseDate: today }
-      });
-    }
-  }
-
-  closeMaterialModal() {
-    this.setState({ materialsModalOpen: false, materialEditingId: null });
-  }
-
-  setMaterialField(key, value) {
-    this.setState({ materialForm: Object.assign({}, this.state.materialForm, { [key]: value }) });
-  }
-
-  saveMaterial() {
-    const f = this.state.materialForm;
-    const qtyNum = Number(f.qty) || 0;
-    const priceNum = Number(f.price) || 0;
-    const today = new Date().toISOString().slice(0, 10);
-    if (this.state.materialEditingId) {
-      const m = this.materialsRows.find((r) => r.id === this.state.materialEditingId);
-      if (m) {
-        m.name = f.name.trim() || m.name;
-        m.qty = qtyNum;
-        m.price = priceNum;
-        m.purchaseDate = f.purchaseDate || m.purchaseDate;
-      }
-    } else {
-      this.materialsIdCounter += 1;
-      this.materialsRows.unshift({
-        id: 'mat-' + this.materialsIdCounter,
-        name: f.name.trim() || '—',
-        qty: qtyNum,
-        price: priceNum,
-        purchaseDate: f.purchaseDate || today
-      });
-    }
-    this.setState({ materialsModalOpen: false, materialEditingId: null, selected: 'materials', search: '' });
-    this.checkAlerts();
-  }
-
-  toggleMaterialMenu(rowId) {
-    this.setState({ materialsMenuFor: this.state.materialsMenuFor === rowId ? null : rowId });
-  }
-
-  closeMaterialMenu() {
-    this.setState({ materialsMenuFor: null });
-  }
-
-  deleteMaterial(rowId) {
-    const idx = this.materialsRows.findIndex((r) => r.id === rowId);
-    if (idx !== -1) this.materialsRows.splice(idx, 1);
-    this.setState({ materialsMenuFor: null });
-  }
-
-  csvEscape(value) {
-    const str = value === null || value === undefined ? '' : String(value);
-    return '"' + str.replace(/"/g, '""') + '"';
-  }
-
-  buildBackupCsv() {
-    const sources = {
-      late: this.lateRows,
-      inprogress: this.progressRows,
-      completed: this.completedRows,
-      delivered: this.deliveredRows,
-      pending: this.pendingRows
-    };
-    const STATUS_LABELS = {
-      late: 'متأخرة',
-      inprogress: 'قيد الإنتاج',
-      completed: 'مكتملة',
-      delivered: 'تم تسليمها',
-      pending: 'بانتظار التسليم'
-    };
-    const allCaseRows = [];
-    const debtRows = [];
-    Object.keys(sources).forEach((statusId) => {
-      sources[statusId].forEach((r) => {
-        const total = Number(r.total) || 0;
-        const paid = Number(r.paid) || 0;
-        const remaining = Math.max(0, total - paid);
-        allCaseRows.push([
-          r.doctor || '—', r.patient || '—', r.caseType || r.material || '—',
-          STATUS_LABELS[statusId] || statusId, r.orderDate || '—', r.dueDate || r.expected || '—',
-          total, paid, remaining
-        ]);
-        if (total > paid) {
-          debtRows.push([r.doctor || '—', r.patient || '—', STATUS_LABELS[statusId] || statusId, total, paid, remaining]);
-        }
-      });
-    });
-
-    const rows = [];
-    rows.push(['نسخة احتياطية — Esthetic Universe', new Date().toISOString().slice(0, 10)]);
-    rows.push([]);
-
-    rows.push(['جدول الحالات']);
-    rows.push(['اسم الطبيب / العيادة', 'اسم المريض', 'نوع العمل', 'حالة الطلب', 'تاريخ الاستلام', 'تاريخ التسليم المتوقع', 'المبلغ الإجمالي', 'المبلغ المدفوع', 'المبلغ المتبقي']);
-    if (allCaseRows.length === 0) {
-      rows.push(['لا توجد حالات مسجلة']);
-    } else {
-      allCaseRows.forEach((r) => rows.push(r));
-    }
-    rows.push([]);
-
-    rows.push(['الديون والمستحقات']);
-    rows.push(['اسم الطبيب / العيادة', 'اسم المريض', 'حالة الطلب', 'المبلغ الإجمالي', 'المبلغ المدفوع', 'المبلغ المتبقي']);
-    if (debtRows.length === 0) {
-      rows.push(['لا توجد ديون أو مستحقات حالياً']);
-    } else {
-      debtRows.forEach((r) => rows.push(r));
-    }
-    rows.push([]);
-
-    rows.push(['المخزون والمواد']);
-    rows.push(['اسم المادة', 'الكمية المتوفرة', 'سعر الشراء', 'تاريخ الشراء']);
-    if (this.materialsRows.length === 0) {
-      rows.push(['لا توجد مواد مسجلة']);
-    } else {
-      this.materialsRows.forEach((m) => {
-        rows.push([m.name || '—', Number(m.qty) || 0, Number(m.price) || 0, m.purchaseDate || '—']);
-      });
-    }
-    rows.push([]);
-
-    const allRows = [].concat(this.lateRows, this.progressRows, this.completedRows, this.deliveredRows, this.pendingRows);
-    const totalPaid = allRows.reduce((a, r) => a + (Number(r.paid) || 0), 0);
-    const totalDebt = allRows.reduce((a, r) => a + Math.max(0, (Number(r.total) || 0) - (Number(r.paid) || 0)), 0);
-    const totalMaterialsSpend = this.materialsRows.reduce((a, m) => a + (Number(m.price) || 0), 0);
-    rows.push(['ملخص مالي']);
-    rows.push(['البند', 'القيمة (د.ع)']);
-    rows.push(['الأرباح الإجمالية (المدفوع فعلياً)', totalPaid]);
-    rows.push(['إجمالي الديون والمستحقات', totalDebt]);
-    rows.push(['إجمالي مصاريف المواد', totalMaterialsSpend]);
-
-    const csvLines = rows.map((row) => row.map((cell) => this.csvEscape(cell)).join(','));
-    return '﻿' + csvLines.join('\r\n');
-  }
-
-  exportBackup() {
-    try {
-      const csv = this.buildBackupCsv();
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const today = new Date().toISOString().slice(0, 10);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'EstheticUniverse_Backup_' + today + '.csv';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-    } catch (e) {}
-  }
-
-  renderVals() {
-    const search = (this.state.search || '').trim();
-    const sel = this.state.selected;
-    const now = new Date();
-    let dateStr = '';
-    try {
-      dateStr = now.toLocaleDateString('ar-u-ca-gregory-nu-latn', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    } catch (e) {
-      dateStr = now.toLocaleDateString();
-    }
-    const todayStr = now.toISOString().slice(0, 10);
-
-    const match = (row, fields) => !search || fields.some((f) => (row[f] || '').indexOf(search) !== -1);
-    const fmt = (n) => n.toLocaleString('en-US') + ' د.ع';
-
-    const lateRowsFiltered = this.lateRows.filter((r) => match(r, ['doctor', 'clinic']));
-    const progressRowsFiltered = this.progressRows.filter((r) => match(r, ['doctor', 'clinic']));
-    const completedRowsFiltered = this.completedRows.filter((r) => match(r, ['doctor', 'clinic']));
-    const deliveredRowsFiltered = this.deliveredRows.filter((r) => match(r, ['doctor', 'clinic']));
-    const pendingRowsFiltered = this.pendingRows.filter((r) => match(r, ['doctor', 'clinic']));
-    const fmtQty = (n) => n.toLocaleString('en-US');
-    const materialsNormalized = this.materialsRows.map((m) => ({
-      id: m.id,
-      name: m.name,
-      qtyText: fmtQty(Number(m.qty) || 0),
-      priceText: fmt(Number(m.price) || 0),
-      purchaseDate: m.purchaseDate || '—',
-      menuOpen: this.state.materialsMenuFor === m.id,
-      toggleMenu: () => this.toggleMaterialMenu(m.id),
-      closeMenu: () => this.closeMaterialMenu(),
-      editPick: () => this.openMaterialModal(m.id),
-      deletePick: () => this.deleteMaterial(m.id)
-    }));
-    const materialsRowsFiltered = materialsNormalized.filter((r) => match(r, ['name']));
-    const materialsTotalSpend = this.materialsRows.reduce((a, m) => a + (Number(m.price) || 0), 0);
-
-    const MATERIAL_LIST = ['زركون', 'سيراميك', 'إيماكس', 'أكريليك', 'معدن', 'أخرى'];
-    const STATUS_META = {
-      late: { label: 'متأخرة', color: '#f87171', bg: 'rgba(248,113,113,0.15)' },
-      inprogress: { label: 'قيد الإنتاج', color: '#fbbf24', bg: 'rgba(251,191,36,0.15)' },
-      completed: { label: 'مكتملة', color: '#2ec6c6', bg: 'rgba(46,198,198,0.15)' },
-      delivered: { label: 'تم تسليمها', color: '#4ade80', bg: 'rgba(74,222,128,0.15)' },
-      pending: { label: 'بانتظار التسليم', color: '#a78bfa', bg: 'rgba(167,139,250,0.15)' }
-    };
-    const CASE_SOURCES = {
-      late: this.lateRows,
-      inprogress: this.progressRows,
-      completed: this.completedRows,
-      delivered: this.deliveredRows,
-      pending: this.pendingRows
-    };
-    const isCaseCategory = !!STATUS_META[sel];
-    let activeRowsFiltered = [];
-    let activeEmptyNoData = false;
-    let activeEmptyWithSearch = false;
-    if (isCaseCategory) {
-      const meta = STATUS_META[sel];
-      const sourceRows = CASE_SOURCES[sel];
-      const normalized = sourceRows.map((r) => {
-        const paidAmt = Number(r.paid) || 0;
-        const totalAmt = Number(r.total) || 0;
-        const fullyPaid = totalAmt <= paidAmt;
-        const dueDateVal = r.dueDate || r.expected || '';
-        const isOverdue = sel !== 'delivered' && !!dueDateVal && dueDateVal < todayStr;
-        return {
-          id: r.id,
-          doctor: r.doctor,
-          patient: r.patient,
-          workType: r.caseType || r.material || '—',
-          deliveryDate: dueDateVal || r.completedDate || r.deliveredDate || r.readyDate || '—',
-          isOverdue,
-          dateColor: isOverdue ? '#f87171' : '#c3cde3',
-          statusLabel: meta.label,
-          statusColor: meta.color,
-          statusBg: meta.bg,
-          isFullyPaid: fullyPaid,
-          paidOptionBg: fullyPaid ? 'rgba(53,197,201,0.14)' : 'transparent',
-          unpaidOptionBg: !fullyPaid ? 'rgba(53,197,201,0.14)' : 'transparent',
-          markPaid: () => this.setPayment(r.id, sel, totalAmt || paidAmt || 0),
-          markUnpaid: () => this.setPayment(r.id, sel, 0),
-          menuOpen: this.state.statusMenuFor === r.id,
-          toggleMenu: () => this.toggleStatusMenu(r.id),
-          closeMenu: () => this.closeStatusMenu(),
-          otherStatuses: Object.keys(STATUS_META)
-            .filter((id) => id !== sel)
-            .map((id) => ({
-              label: STATUS_META[id].label,
-              dot: STATUS_META[id].color,
-              pick: () => this.moveCase(r.id, sel, id)
-            }))
-        };
-      });
-      activeRowsFiltered = normalized.filter((r) => !search || (r.doctor || '').indexOf(search) !== -1 || (r.patient || '').indexOf(search) !== -1);
-      activeEmptyNoData = sourceRows.length === 0;
-      activeEmptyWithSearch = !activeEmptyNoData && activeRowsFiltered.length === 0;
-    }
-
-    const allCaseEntries = [];
-    Object.keys(CASE_SOURCES).forEach((id) => {
-      CASE_SOURCES[id].forEach((r) => { allCaseEntries.push({ statusId: id, row: r }); });
-    });
-    const overdueCount = allCaseEntries.filter((e) => {
-      const d = e.row.dueDate || e.row.expected || '';
-      return e.statusId !== 'delivered' && !!d && d < todayStr;
-    }).length;
-    const totalPaid = allCaseEntries.reduce((a, e) => a + (Number(e.row.paid) || 0), 0);
-    const debtEntries = allCaseEntries.filter((e) => (Number(e.row.total) || 0) > (Number(e.row.paid) || 0));
-    const totalDebt = debtEntries.reduce((a, e) => a + ((Number(e.row.total) || 0) - (Number(e.row.paid) || 0)), 0);
-    const paidEntries = allCaseEntries.filter((e) => (Number(e.row.paid) || 0) > 0);
-    const profitsSourceRows = paidEntries.map((e) => ({
-      doctor: e.row.doctor,
-      clinic: e.row.clinic,
-      patient: e.row.patient,
-      paidText: fmt(Number(e.row.paid) || 0),
-      statusLabel: STATUS_META[e.statusId].label,
-      statusColor: STATUS_META[e.statusId].color,
-      statusBg: STATUS_META[e.statusId].bg
-    }));
-    const debtsSourceRows = debtEntries.map((e) => ({
-      doctor: e.row.doctor,
-      clinic: e.row.clinic,
-      patient: e.row.patient,
-      remainingText: fmt((Number(e.row.total) || 0) - (Number(e.row.paid) || 0)),
-      statusLabel: STATUS_META[e.statusId].label,
-      statusColor: STATUS_META[e.statusId].color,
-      statusBg: STATUS_META[e.statusId].bg
-    }));
-    const profitsRowsFiltered = profitsSourceRows.filter((r) => match(r, ['doctor', 'clinic', 'patient']));
-    const debtsRowsFiltered = debtsSourceRows.filter((r) => match(r, ['doctor', 'clinic', 'patient']));
-
-    const border = (id, color) => (sel === id ? color : 'rgba(255,255,255,0.09)');
-    const bg = (id, tint) => (sel === id ? tint : 'rgba(255,255,255,0.045)');
-
-    const LABELS = { late: 'الحالات المتأخرة', inprogress: 'قيد الإنتاج', completed: 'حالات مكتملة', delivered: 'تم تسليمها', pending: 'بانتظار التسليم', profits: 'الأرباح الإجمالية', debts: 'الديون والمستحقات', materials: 'المواد والمخزون' };
-    const COLORS = { late: '#f87171', inprogress: '#fbbf24', completed: '#2ec6c6', delivered: '#4ade80', pending: '#a78bfa', profits: '#4ade80', debts: '#f97316', materials: '#60a5fa' };
-
-    const totals = {
-      late: [this.lateRows.length, lateRowsFiltered.length],
-      inprogress: [this.progressRows.length, progressRowsFiltered.length],
-      completed: [this.completedRows.length, completedRowsFiltered.length],
-      delivered: [this.deliveredRows.length, deliveredRowsFiltered.length],
-      pending: [this.pendingRows.length, pendingRowsFiltered.length],
-      profits: [profitsSourceRows.length, profitsRowsFiltered.length],
-      debts: [debtsSourceRows.length, debtsRowsFiltered.length],
-      materials: [this.materialsRows.length, materialsRowsFiltered.length]
-    };
-    const t = totals[sel] || [0, 0];
-    const detailsMeta = t[0] ? (search ? (t[1] + ' من ' + t[0] + ' سجل') : (t[0] + ' سجل')) : '';
-
-    return {
-      dateStr,
-      searchValue: this.state.search || '',
-      onSearchChange: (e) => this.setState({ search: e.target.value }),
-
-      lateBorder: border('late', COLORS.late), lateBg: bg('late', 'rgba(248,113,113,0.10)'), lateCount: this.lateRows.length, pickLate: () => this.select('late'),
-      overdueCount, hasOverdue: overdueCount > 0,
-      progressBorder: border('inprogress', COLORS.inprogress), progressBg: bg('inprogress', 'rgba(251,191,36,0.10)'), progressCount: this.progressRows.length, pickProgress: () => this.select('inprogress'),
-      completedBorder: border('completed', COLORS.completed), completedBg: bg('completed', 'rgba(46,198,198,0.10)'), completedCount: this.completedRows.length, pickCompleted: () => this.select('completed'),
-      deliveredBorder: border('delivered', COLORS.delivered), deliveredBg: bg('delivered', 'rgba(74,222,128,0.10)'), deliveredCount: this.deliveredRows.length, pickDelivered: () => this.select('delivered'),
-      pendingBorder: border('pending', COLORS.pending), pendingBg: bg('pending', 'rgba(167,139,250,0.10)'), pendingCount: this.pendingRows.length, pickPending: () => this.select('pending'),
-
-      profitsBorder: border('profits', COLORS.profits), profitsBg: bg('profits', 'rgba(74,222,128,0.10)'), profitsTotal: fmt(totalPaid), profitsCasesCount: profitsSourceRows.length, pickProfits: () => this.select('profits'),
-      debtsBorder: border('debts', COLORS.debts), debtsBg: bg('debts', 'rgba(249,115,22,0.10)'), debtsTotal: fmt(totalDebt), debtsClinicsCount: debtsSourceRows.length, pickDebts: () => this.select('debts'),
-      materialsBorder: border('materials', COLORS.materials), materialsBg: bg('materials', 'rgba(96,165,250,0.10)'), materialsTotal: fmt(materialsTotalSpend), materialsCount: this.materialsRows.length, pickMaterials: () => this.select('materials'),
-
-      hasSelection: !!sel,
-      noSelection: !sel,
-      clearSelection: () => this.select(null),
-
-      modalOpen: !!this.state.modalOpen,
-      openModal: () => this.openModal(),
-      closeModal: () => this.closeModal(),
-      saveCase: () => this.saveCase(),
-      formName: this.state.form.name,
-      formPatient: this.state.form.patient,
-      formMaterial: this.state.form.material,
-      formStatus: this.state.form.status,
-      formStatusLabel: (STATUS_META[this.state.form.status] || {}).label || '',
-      formStatusColor: (STATUS_META[this.state.form.status] || {}).color || '#35c5c9',
-
-      materialDropdownOpen: this.state.openDropdown === 'material',
-      statusDropdownOpen: this.state.openDropdown === 'status',
-      toggleMaterialDropdown: () => this.toggleDropdown('material'),
-      toggleStatusDropdown: () => this.toggleDropdown('status'),
-      closeDropdowns: () => this.closeDropdowns(),
-      materialChevron: this.state.openDropdown === 'material' ? 'rotate(180deg)' : 'rotate(0deg)',
-      statusChevron: this.state.openDropdown === 'status' ? 'rotate(180deg)' : 'rotate(0deg)',
-      materialOptions: MATERIAL_LIST.map((label) => ({
-        label,
-        selected: this.state.form.material === label,
-        bg: this.state.form.material === label ? 'rgba(53,197,201,0.14)' : 'transparent',
-        weight: this.state.form.material === label ? 700 : 500,
-        pick: () => this.setFormField('material', label)
-      })),
-      statusOptions: Object.keys(STATUS_META).map((id) => ({
-        label: STATUS_META[id].label,
-        dot: STATUS_META[id].color,
-        selected: this.state.form.status === id,
-        bg: this.state.form.status === id ? 'rgba(53,197,201,0.14)' : 'transparent',
-        weight: this.state.form.status === id ? 700 : 500,
-        pick: () => this.setFormField('status', id)
-      })),
-      formTotal: this.state.form.total,
-      formPaid: this.state.form.paid,
-      formOrderDate: this.state.form.orderDate,
-      formDueDate: this.state.form.dueDate,
-      onFormNameChange: (e) => this.setFormField('name', e.target.value),
-      onFormPatientChange: (e) => this.setFormField('patient', e.target.value),
-      onFormTotalChange: (e) => this.setFormField('total', e.target.value),
-      onFormPaidChange: (e) => this.setFormField('paid', e.target.value),
-      onFormOrderDateChange: (e) => this.setFormField('orderDate', e.target.value),
-      onFormDueDateChange: (e) => this.setFormField('dueDate', e.target.value),
-      detailsLabel: LABELS[sel] || '',
-      detailsColor: COLORS[sel] || '#35c5c9',
-      detailsMeta,
-
-      isProfits: sel === 'profits', isDebts: sel === 'debts', isMaterials: sel === 'materials',
-
-      isCaseCategory,
-      activeRowsFiltered,
-      activeEmptyNoData,
-      activeEmptyWithSearch,
-
-      profitsRowsFiltered,
-      profitsEmptyNoData: profitsSourceRows.length === 0,
-      profitsEmptyWithSearch: profitsSourceRows.length > 0 && profitsRowsFiltered.length === 0,
-      debtsRowsFiltered,
-      debtsEmptyNoData: debtsSourceRows.length === 0,
-      debtsEmptyWithSearch: debtsSourceRows.length > 0 && debtsRowsFiltered.length === 0,
-      materialsRowsFiltered,
-      materialsEmptyNoData: this.materialsRows.length === 0,
-      materialsEmptyWithSearch: this.materialsRows.length > 0 && materialsRowsFiltered.length === 0,
-
-      materialsModalOpen: !!this.state.materialsModalOpen,
-      materialModalTitle: this.state.materialEditingId ? 'تعديل المادة' : 'إضافة مادة جديدة',
-      openMaterialModal: () => this.openMaterialModal(null),
-      closeMaterialModal: () => this.closeMaterialModal(),
-      saveMaterial: () => this.saveMaterial(),
-      materialFormName: this.state.materialForm.name,
-      materialFormQty: this.state.materialForm.qty,
-      materialFormPrice: this.state.materialForm.price,
-      materialFormDate: this.state.materialForm.purchaseDate,
-      onMaterialNameChange: (e) => this.setMaterialField('name', e.target.value),
-      onMaterialQtyChange: (e) => this.setMaterialField('qty', e.target.value),
-      onMaterialPriceChange: (e) => this.setMaterialField('price', e.target.value),
-      onMaterialDateChange: (e) => this.setMaterialField('purchaseDate', e.target.value),
-
-      searchMicClick: () => (this.state.voiceListeningFor === 'search' ? this.stopVoiceInput() : this.startVoiceInput('search')),
-      searchMicBg: this.state.voiceListeningFor === 'search' ? 'rgba(248,113,113,0.22)' : 'rgba(255,255,255,0.06)',
-      searchMicColor: this.state.voiceListeningFor === 'search' ? '#f87171' : '#93a0bb',
-      doctorMicClick: () => (this.state.voiceListeningFor === 'doctor' ? this.stopVoiceInput() : this.startVoiceInput('doctor')),
-      doctorMicBg: this.state.voiceListeningFor === 'doctor' ? 'rgba(248,113,113,0.22)' : 'rgba(255,255,255,0.06)',
-      doctorMicColor: this.state.voiceListeningFor === 'doctor' ? '#f87171' : '#93a0bb',
-      patientMicClick: () => (this.state.voiceListeningFor === 'patient' ? this.stopVoiceInput() : this.startVoiceInput('patient')),
-      patientMicBg: this.state.voiceListeningFor === 'patient' ? 'rgba(248,113,113,0.22)' : 'rgba(255,255,255,0.06)',
-      patientMicColor: this.state.voiceListeningFor === 'patient' ? '#f87171' : '#93a0bb',
-
-      alertsList: (this.state.alerts || []).map((a) => ({
-        text: a.text,
-        dotColor: a.kind === 'stock' ? '#60a5fa' : '#f87171',
-        borderColor: a.kind === 'stock' ? 'rgba(96,165,250,0.35)' : 'rgba(248,113,113,0.35)',
-        dismiss: () => this.dismissAlert(a.id)
-      })),
-
-      exportBackup: () => this.exportBackup(),
-
-      showInstallBanner: this.isMobileDevice() && !this.isStandalone() && !this.state.installDismissed,
-      installClick: () => this.installClick(),
-      dismissInstallBanner: () => this.dismissInstallBanner(),
-      installInstructionsOpen: !!this.state.installInstructionsOpen,
-      closeInstallInstructions: () => this.closeInstallInstructions()
-    };
-  }
-}
+  maybeShowBanner();
+  setTimeout(maybeShowBanner, 1500);
+})();
 </script>
 </body>
 </html>
