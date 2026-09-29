@@ -243,8 +243,8 @@
     pending: { label: 'بانتظار التسليم', color: '#a78bfa', bg: 'rgba(167,139,250,0.15)' }
   };
   var MATERIAL_LIST = ['زركون', 'سيراميك', 'إيماكس', 'أكريليك', 'معدن', 'أخرى'];
-  var LABELS = { late: 'الحالات المتأخرة', inprogress: 'قيد الإنتاج', completed: 'حالات مكتملة', delivered: 'تم تسليمها', pending: 'بانتظار التسليم', profits: 'الأرباح الإجمالية', debts: 'الديون والمستحقات', materials: 'المواد والمخزون' };
-  var COLORS = { late: '#f87171', inprogress: '#fbbf24', completed: '#2ec6c6', delivered: '#4ade80', pending: '#a78bfa', profits: '#4ade80', debts: '#f97316', materials: '#60a5fa' };
+  var LABELS = { late: 'الحالات المتأخرة', inprogress: 'قيد الإنتاج', completed: 'حالات مكتملة', delivered: 'تم تسليمها', pending: 'بانتظار التسليم', profits: 'الأرباح الإجمالية', debts: 'الديون والمستحقات', materials: 'المواد والمخزون', search: 'نتائج البحث' };
+  var COLORS = { late: '#f87171', inprogress: '#fbbf24', completed: '#2ec6c6', delivered: '#4ade80', pending: '#a78bfa', profits: '#4ade80', debts: '#f97316', materials: '#60a5fa', search: '#35c5c9' };
   var LOW_STOCK_THRESHOLD = 5;
   var STORAGE_KEY = 'esthetic_universe_data_v1';
 
@@ -516,7 +516,8 @@
     recog.onresult = function (event) {
       var transcript = (event.results && event.results[0] && event.results[0][0] && event.results[0][0].transcript) || '';
       if (targetField === 'search') {
-        self.setState({ search: transcript, voiceListeningFor: null });
+        var trimmedTranscript = (transcript || '').trim();
+        self.setState({ search: transcript, voiceListeningFor: null, selected: trimmedTranscript ? 'search' : null });
       } else if (targetField === 'doctor') {
         self.setFormField('name', transcript);
         self.setState({ voiceListeningFor: null });
@@ -856,7 +857,7 @@
     rows.push(['إجمالي مصاريف المواد', totalMaterialsSpend]);
 
     var csvLines = rows.map(function (row) { return row.map(function (cell) { return self.csvEscape(cell); }).join(','); });
-    return '\uFEFF' + csvLines.join('\r\n');
+    return '﻿' + csvLines.join('\r\n');
   };
 
   App.prototype.exportBackup = function () {
@@ -882,6 +883,11 @@
     if (!el) return;
     var path = el.getAttribute('data-bind');
     var value = el.value;
+    if (path === 'search') {
+      var trimmedSearch = (value || '').trim();
+      this.setState({ search: value, selected: trimmedSearch ? 'search' : null });
+      return;
+    }
     if (path.indexOf('.') === -1) {
       var patch = {};
       patch[path] = value;
@@ -903,7 +909,9 @@
     var rowId = el.getAttribute('data-row');
     var value = el.getAttribute('data-value');
     var id = el.getAttribute('data-id');
+    var rowStatus = el.getAttribute('data-status');
     var sel = this.state.selected;
+    var statusForRow = rowStatus || sel;
 
     switch (action) {
       case 'select': this.select(value); break;
@@ -931,16 +939,16 @@
 
       case 'toggle-status-menu': this.toggleStatusMenu(rowId); break;
       case 'close-status-menu': this.closeStatusMenu(); break;
-      case 'edit-case': this.openEditModal(rowId, sel); break;
-      case 'move-case': this.moveCase(rowId, sel, value); break;
+      case 'edit-case': this.openEditModal(rowId, statusForRow); break;
+      case 'move-case': this.moveCase(rowId, statusForRow, value); break;
       case 'mark-paid': {
-        var rowP = this.findCaseRow(sel, rowId);
+        var rowP = this.findCaseRow(statusForRow, rowId);
         var totalAmt = rowP ? (Number(rowP.total) || 0) : 0;
         var paidAmt = rowP ? (Number(rowP.paid) || 0) : 0;
-        this.setPayment(rowId, sel, totalAmt || paidAmt || 0);
+        this.setPayment(rowId, statusForRow, totalAmt || paidAmt || 0);
         break;
       }
-      case 'mark-unpaid': this.setPayment(rowId, sel, 0); break;
+      case 'mark-unpaid': this.setPayment(rowId, statusForRow, 0); break;
 
       case 'open-material-modal': this.openMaterialModal(id || null); break;
       case 'close-material-modal': this.closeMaterialModal(); break;
@@ -1034,11 +1042,53 @@
       late: this.lateRows, inprogress: this.progressRows, completed: this.completedRows,
       delivered: this.deliveredRows, pending: this.pendingRows
     };
-    var isCaseCategory = !!STATUS_META[sel];
+    var isSearchResults = sel === 'search';
+    var isCaseCategory = !!STATUS_META[sel] || isSearchResults;
     var activeRowsFiltered = [];
     var activeEmptyNoData = false;
     var activeEmptyWithSearch = false;
-    if (isCaseCategory) {
+    var aggRows = [];
+    if (isSearchResults) {
+      Object.keys(CASE_SOURCES).forEach(function (statusId) {
+        var meta = STATUS_META[statusId];
+        CASE_SOURCES[statusId].forEach(function (r) {
+          var paidAmt = Number(r.paid) || 0;
+          var totalAmt = Number(r.total) || 0;
+          var fullyPaid = totalAmt <= paidAmt;
+          var dueDateVal = r.dueDate || r.expected || '';
+          var isOverdue = statusId !== 'delivered' && !!dueDateVal && dueDateVal < todayStr;
+          aggRows.push({
+            id: r.id,
+            statusId: statusId,
+            doctor: r.doctor,
+            patient: r.patient,
+            material: r.caseType || r.material || '',
+            workType: r.caseType || r.material || '—',
+            deliveryDate: dueDateVal || r.completedDate || r.deliveredDate || r.readyDate || '—',
+            isOverdue: isOverdue,
+            dateColor: isOverdue ? '#f87171' : '#c3cde3',
+            statusLabel: meta.label,
+            statusColor: meta.color,
+            statusBg: meta.bg,
+            isFullyPaid: fullyPaid,
+            paidOptionBg: fullyPaid ? 'rgba(53,197,201,0.14)' : 'transparent',
+            unpaidOptionBg: !fullyPaid ? 'rgba(53,197,201,0.14)' : 'transparent',
+            menuOpen: self.state.statusMenuFor === r.id,
+            otherStatuses: Object.keys(STATUS_META).filter(function (sid) { return sid !== statusId; }).map(function (sid) {
+              return { label: STATUS_META[sid].label, dot: STATUS_META[sid].color, id: sid };
+            })
+          });
+        });
+      });
+      activeRowsFiltered = aggRows.filter(function (r) {
+        return !search
+          || (r.doctor || '').indexOf(search) !== -1
+          || (r.patient || '').indexOf(search) !== -1
+          || (r.material || '').indexOf(search) !== -1;
+      });
+      activeEmptyNoData = aggRows.length === 0;
+      activeEmptyWithSearch = !activeEmptyNoData && activeRowsFiltered.length === 0;
+    } else if (isCaseCategory) {
       var meta = STATUS_META[sel];
       var sourceRows = CASE_SOURCES[sel];
       var normalized = sourceRows.map(function (r) {
@@ -1049,8 +1099,10 @@
         var isOverdue = sel !== 'delivered' && !!dueDateVal && dueDateVal < todayStr;
         return {
           id: r.id,
+          statusId: sel,
           doctor: r.doctor,
           patient: r.patient,
+          material: r.caseType || r.material || '',
           workType: r.caseType || r.material || '—',
           deliveryDate: dueDateVal || r.completedDate || r.deliveredDate || r.readyDate || '—',
           isOverdue: isOverdue,
@@ -1068,7 +1120,10 @@
         };
       });
       activeRowsFiltered = normalized.filter(function (r) {
-        return !search || (r.doctor || '').indexOf(search) !== -1 || (r.patient || '').indexOf(search) !== -1;
+        return !search
+          || (r.doctor || '').indexOf(search) !== -1
+          || (r.patient || '').indexOf(search) !== -1
+          || (r.material || '').indexOf(search) !== -1;
       });
       activeEmptyNoData = sourceRows.length === 0;
       activeEmptyWithSearch = !activeEmptyNoData && activeRowsFiltered.length === 0;
@@ -1114,7 +1169,8 @@
       pending: [this.pendingRows.length, pendingRowsFiltered.length],
       profits: [profitsSourceRows.length, profitsRowsFiltered.length],
       debts: [debtsSourceRows.length, debtsRowsFiltered.length],
-      materials: [this.materialsRows.length, materialsRowsFiltered.length]
+      materials: [this.materialsRows.length, materialsRowsFiltered.length],
+      search: [aggRows.length, activeRowsFiltered.length]
     };
     var t = totals[sel] || [0, 0];
     var detailsMeta = t[0] ? (search ? (t[1] + ' من ' + t[0] + ' سجل') : (t[0] + ' سجل')) : '';
@@ -1176,6 +1232,7 @@
 
       isProfits: sel === 'profits', isDebts: sel === 'debts', isMaterials: sel === 'materials',
       isCaseCategory: isCaseCategory,
+      isSearchResults: isSearchResults,
       activeRowsFiltered: activeRowsFiltered,
       activeEmptyNoData: activeEmptyNoData,
       activeEmptyWithSearch: activeEmptyWithSearch,
@@ -1284,7 +1341,7 @@
       + '<div style="display: flex; align-items: center; gap: 14px; width: 100%; max-width: 720px; flex-wrap: wrap; justify-content: center;">'
       + '<label class="eu-search-wrap" style="flex: 1 1 300px; min-width: 230px; position: relative; display: flex; align-items: center;">'
       + '<span style="position: absolute; right: 16px; display: flex; color: #5c6b8a;">' + ICON_SEARCH + '</span>'
-      + '<input type="text" data-bind="search" value="' + escHtml(v.searchValue) + '" placeholder="ابحث باسم الطبيب أو العيادة..." style="width: 100%; padding: 14px 46px 14px 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 15px;">'
+      + '<input type="text" data-bind="search" value="' + escHtml(v.searchValue) + '" placeholder="ابحث عن اسم الطبيب، المريض، أو نوع التركيبة..." style="width: 100%; padding: 14px 46px 14px 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.05); color: #eef1f8; font-family: inherit; font-size: 15px;">'
       + '<button type="button" data-action="search-mic-click" title="البحث بالصوت" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; left: 10px; display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: ' + v.searchMicBg + '; color: ' + v.searchMicColor + ';">' + ICON_MIC15 + '</button>'
       + '</label>'
       + '<div class="eu-date-chip" style="display: flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: #c3cde3; font-size: 14px; white-space: nowrap;">' + ICON_CALENDAR + '<span>' + escHtml(v.dateStr) + '</span></div>'
@@ -1392,14 +1449,14 @@
         + '<div role="listbox" style="position: absolute; top: calc(100% + 6px); left: 0; min-width: 190px; z-index: 61; background: #f4f6fa; border-radius: 12px; border: 1px solid rgba(15,23,42,0.08); box-shadow: 0 18px 44px rgba(0,0,0,0.4); padding: 6px;">'
         + '<div style="padding: 8px 10px 4px; font-size: 11.5px; font-weight: 700; color: #6b7690;">نقل الحالة إلى</div>'
         + row.otherStatuses.map(function (opt) {
-            return '<button type="button" data-action="move-case" data-row="' + escHtml(row.id) + '" data-value="' + opt.id + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: transparent; font-size: 13.5px; font-weight: 500;">'
+            return '<button type="button" data-action="move-case" data-row="' + escHtml(row.id) + '" data-status="' + escHtml(row.statusId) + '" data-value="' + opt.id + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: transparent; font-size: 13.5px; font-weight: 500;">'
               + '<span style="width: 8px; height: 8px; border-radius: 50%; background: ' + opt.dot + ';"></span><span>' + escHtml(opt.label) + '</span></button>';
           }).join('')
         + '<div style="height: 1px; background: rgba(15,23,42,0.08); margin: 6px 4px;"></div>'
         + '<div style="padding: 8px 10px 4px; font-size: 11.5px; font-weight: 700; color: #6b7690;">حالة الدفع</div>'
-        + '<button type="button" data-action="mark-paid" data-row="' + escHtml(row.id) + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: ' + row.paidOptionBg + '; font-size: 13.5px; font-weight: 500;">'
+        + '<button type="button" data-action="mark-paid" data-row="' + escHtml(row.id) + '" data-status="' + escHtml(row.statusId) + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: ' + row.paidOptionBg + '; font-size: 13.5px; font-weight: 500;">'
         + '<span style="width: 8px; height: 8px; border-radius: 50%; background: #4ade80;"></span><span>مدفوع بالكامل</span></button>'
-        + '<button type="button" data-action="mark-unpaid" data-row="' + escHtml(row.id) + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: ' + row.unpaidOptionBg + '; font-size: 13.5px; font-weight: 500;">'
+        + '<button type="button" data-action="mark-unpaid" data-row="' + escHtml(row.id) + '" data-status="' + escHtml(row.statusId) + '" class="eu-option" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #12181f; background: ' + row.unpaidOptionBg + '; font-size: 13.5px; font-weight: 500;">'
         + '<span style="width: 8px; height: 8px; border-radius: 50%; background: #f97316;"></span><span>غير مدفوع</span></button>'
         + '</div>'
       ) : '';
@@ -1412,7 +1469,7 @@
         + (row.isOverdue ? '<span style="display: inline-block; margin-inline-start: 8px; padding: 2px 9px; border-radius: 999px; background: rgba(248,113,113,0.16); color: #f87171; font-size: 11px; font-weight: 700;">متأخر</span>' : '')
         + '</td>'
         + '<td style="padding: 14px 24px; position: relative;">'
-        + '<button type="button" data-action="edit-case" data-row="' + escHtml(row.id) + '" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">' + ICON_EDIT + '<span>تعديل الحالة</span></button>'
+        + '<button type="button" data-action="edit-case" data-row="' + escHtml(row.id) + '" data-status="' + escHtml(row.statusId) + '" style="all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; border: 1px solid rgba(53,197,201,0.35); background: rgba(53,197,201,0.1); color: #35c5c9; font-weight: 600; font-size: 12.5px; white-space: nowrap;">' + ICON_EDIT + '<span>تعديل الحالة</span></button>'
         + menu
         + '</td></tr>';
     }).join('');
@@ -1426,7 +1483,7 @@
       + '<th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">تاريخ التسليم</th>'
       + '<th style="padding: 14px 24px; border-bottom: 1px solid rgba(255,255,255,0.08);">الإجراءات</th>'
       + '</tr></thead><tbody>' + rows + '</tbody></table>'
-      + (v.activeEmptyNoData ? '<p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد حالات حالياً في هذا التصنيف</p>' : '')
+      + (v.activeEmptyNoData ? '<p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">' + (v.isSearchResults ? 'لا توجد حالات مسجلة حتى الآن' : 'لا توجد حالات حالياً في هذا التصنيف') + '</p>' : '')
       + (v.activeEmptyWithSearch ? '<p style="padding: 28px 24px; text-align: center; color: #6b7690; margin: 0;">لا توجد نتائج مطابقة للبحث</p>' : '')
       + '</div>';
   };
